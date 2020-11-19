@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {io} from 'socket.io-client'
-import { Link } from 'react-router-dom';
 
 const ENDPOINT = 'http://localhost:4001'
 let socket: any;
@@ -49,28 +48,30 @@ const Chat: any = ({userName}: any) => {
         <div className="container">
             {userName ?
                 <div className="chat">
-                <div className="chat-messages">
-                    {messages ? messages.map((message: any) => (
-                        <div key={message.id}>
-                            {message.text}
-                        </div>
-                    )) : ''}
-                </div>
-                <div className="chat-input">
-                    <input className="chat-input__area"
-                           value={message}
-                           onChange={(e) => setMessage(e.target.value)}/>
-                    <button className="chat-input__button"
-                            onClick={(e) => sendMessage()}>Send
-                    </button>
-                </div>
-                <div className="users">Users: <br/>
-                    {users ? users.map((user: any) => (
-                        <div key={user.id}>
-                            {user.name}
-                        </div>
-                    )) : ''}</div>
-            </div>: <></>
+                    <div className="chat-messages">
+                        {messages ? messages.map((message: any) => (
+                            <div key={message.id}>
+                                {message.text}
+                            </div>
+                        )) : ''}
+                    </div>
+                    <div className="chat-input">
+                        <input className="chat-input__area"
+                               value={message}
+                               onChange={(e) => setMessage(e.target.value)}/>
+                        <button
+                            className="chat-input__button"
+                            onClick={(e) => sendMessage()}
+                        >Send
+                        </button>
+                    </div>
+                    <div className="users">Users: <br/>
+                        {users ? users.map((user: any) => (
+                            <div key={user.id}>
+                                {user.name}
+                            </div>
+                        )) : ''}</div>
+                </div> : <></>
             }
         </div>
     )

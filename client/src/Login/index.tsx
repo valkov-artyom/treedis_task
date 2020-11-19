@@ -21,8 +21,8 @@ const Login = () => {
             {!userName ?
                 <Link to='/chat'>
                     <button onClick={() => getUserName()}> Login</button>
-                </Link> : <></>
-            }
+                </Link> : <></>}
+
             <Switch>
                 <Route path='/chat'>
                     <Chat

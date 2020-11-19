@@ -6,8 +6,8 @@ import Chat from './Chat'
 const App = () => {
   return (
     <div className="App">
-     <Login />
-     <Chat />
+        <Login/>
+        <Chat/>
     </div>
   );
 }
