@@ -15,22 +15,18 @@ const Chat: any = ({userName}: any) => {
             socket.emit('join', {userName})
 
             socket.on('new_join', (message: any) => {
-                console.log(message)
                 setMessages((msgs: any) => [...msgs, message]);
             })
 
             socket.on('new_leave', (message: any) => {
-                console.log(message)
                 setMessages((msgs: any) => [...msgs, message]);
             })
 
             socket.on('new_message', (message: any) => {
-                console.log(message)
                 setMessages((msgs: any) => [...msgs, message]);
             })
 
             socket.on('room_users', ({users}: any) => {
-                console.log(users)
                 setUsers(users);
             });
         }
