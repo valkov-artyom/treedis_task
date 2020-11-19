@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {io} from 'socket.io-client'
+import { Link } from 'react-router-dom';
 
 const ENDPOINT = 'http://localhost:4001'
 let socket: any;
@@ -46,7 +47,8 @@ const Chat: any = ({userName}: any) => {
 
     return (
         <div className="container">
-            <div className="chat">
+            {userName ?
+                <div className="chat">
                 <div className="chat-messages">
                     {messages ? messages.map((message: any) => (
                         <div key={message.id}>
@@ -63,12 +65,13 @@ const Chat: any = ({userName}: any) => {
                     </button>
                 </div>
                 <div className="users">Users: <br/>
-                {users ? users.map((user: any) => (
-                    <div key={user.id}>
-                        {user.name}
-                    </div>
-                )) : ''}</div>
-            </div>
+                    {users ? users.map((user: any) => (
+                        <div key={user.id}>
+                            {user.name}
+                        </div>
+                    )) : ''}</div>
+            </div>: <></>
+            }
         </div>
     )
 }

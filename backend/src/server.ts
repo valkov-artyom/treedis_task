@@ -12,7 +12,7 @@ const config: Config = {
 
 const characterName: string = uniqueNamesGenerator(config);
 
-const PORT = 4001;
+const PORT = process.env.PORT || 4001;
 const app = express();
 const http = createServer(app)
 // @ts-ignore
@@ -26,9 +26,7 @@ const io = socket(http, {
 });
 
 app.use(cors())
-app.get('/', (req, res) => {
-    res.send({userName: characterName})
-})
+
 app.get('/public/login', (req, res) => {
     res.send({userName: characterName})
 })
