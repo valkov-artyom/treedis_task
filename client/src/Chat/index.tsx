@@ -14,19 +14,26 @@ const Chat: any = ({userName}: any) => {
 
             socket.emit('join', {userName})
 
-            socket.on('new_join', (message: any) => {
+            socket.on('new_join', (message: string) => {
+                console.log(message)
                 setMessages((msgs: any) => [...msgs, message]);
             })
 
-            socket.on('new_leave', (message: any) => {
+            socket.on('new_leave', (message: string) => {
+
+                console.log(message)
                 setMessages((msgs: any) => [...msgs, message]);
             })
 
-            socket.on('new_message', (message: any) => {
+            socket.on('new_message', (message: string) => {
+
+                console.log(message)
                 setMessages((msgs: any) => [...msgs, message]);
             })
 
             socket.on('room_users', ({users}: any) => {
+
+                console.log(users)
                 setUsers(users);
             });
         }
@@ -46,7 +53,7 @@ const Chat: any = ({userName}: any) => {
                 <div className="chat">
                     <div className="chat-messages">
                         {messages ? messages.map((message: any) => (
-                            <div key={message.id}>
+                            <div key={Math.random()}>
                                 {message.text}
                             </div>
                         )) : ''}
