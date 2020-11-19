@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {io} from 'socket.io-client'
+import { IMessages } from './interface';
 
 const ENDPOINT = 'http://localhost:4001'
 let socket: any;
@@ -15,25 +16,19 @@ const Chat: any = ({userName}: any) => {
             socket.emit('join', {userName})
 
             socket.on('new_join', (message: string) => {
-                console.log(message)
-                setMessages((msgs: any) => [...msgs, message]);
+                setMessages((msgs: IMessages) => [...msgs, message]);
             })
 
             socket.on('new_leave', (message: string) => {
-
-                console.log(message)
-                setMessages((msgs: any) => [...msgs, message]);
+                setMessages((msgs: IMessages) => [...msgs, message]);
             })
 
             socket.on('new_message', (message: string) => {
 
-                console.log(message)
-                setMessages((msgs: any) => [...msgs, message]);
+                setMessages((msgs: IMessages) => [...msgs, message]);
             })
 
             socket.on('room_users', ({users}: any) => {
-
-                console.log(users)
                 setUsers(users);
             });
         }
